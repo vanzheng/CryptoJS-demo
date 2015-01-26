@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>加密测试</title>
+    <style type="text/css">
+    .section {
+        margin: 20px auto;
+        width: 90%;
+    }
+    .result {
+        margin: 20px 0;
+    }
+    label {
+        vertical-align: top;
+        width: 100px;
+        display: inline-block;
+    }
+    </style>
+    <script type="text/javascript" src="CryptoJS/rollups/tripledes.js"></script>
+</head>
+
+<body>
+    <div class="section">
+        <h3>DES加密</h3>
+        <p>
+            <label>加密字符：</label>
+            <textarea id="messageEncrypt" cols="50" rows="10"></textarea>
+        </p>
+        <p>
+            <label>密钥：</label>
+            <input id="keyEncrypt" type="text" />
+        </p>
+        <p>
+            <input type="button" id="encryption" value="加密" />
+        </p>
+        <p class="result">结果：<span id="encryptionResult"></span>
+        </p>
+    </div>
+    <div class="section">
+        <h3>DES解密密</h3>
+        <p>
+            <label>加密字符：</label>
+            <textarea id="message2" cols="50" rows="10"></textarea>
+        </p>
+        <p>
+            <label>密钥：</label>
+            <input id="key2" type="text" />
+        </p>
+        <p>
+            <input type="button" id="decryption" value="解密" />
+        </p>
+        <p class="result">结果：<span id="decryptionResult"></span>
+        </p>
+    </div>
+    <script type="text/javascript">
+    // DES CBC Mode
+    var messageEncrypt = document.getElementById('messageEncrypt');
+    var keyEncrypt = document.getElementById('keyEncrypt');
+    var encryption = document.getElementById('encryption');
+    var encryptionResult = document.getElementById('encryptionResult');
+
+    var messageDecrypt = document.getElementById('messageDecrypt');
+    var keyDecrypt = document.getElementById('keyDecrypt');
+    var decryption = document.getElementById('decryption');
+    var decryptionResult = document.getElementById('decryptionResult');
+
+    encryption.onclick = function() {
+        var message = messageEncrypt.value;
+        var key = keyEncrypt.value;
+        var result = CryptoJS.DES.encrypt(message, key);
+        encryptionResult.innerHTML = result;
+    }
+
+    decryption.onclick = function() {
+        var message = messageDecrypt.value;
+        var key = keyDecrypt.value;
+        var result = CryptoJS.DES.decrypt(message, key);
+        encryptionResult.innerHTML = result;
+    }
+    </script>
+</body>
+
+</html>
